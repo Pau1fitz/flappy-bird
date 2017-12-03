@@ -1,0 +1,15 @@
+.bird {
+	height: 28px;
+	width: 40px;
+	left: 10%;
+	background: url('https://s28.postimg.org/k90gybbtl/bird_Sprite.png');
+	position: absolute;
+	z-index: 3;
+	animation: birdFlap 0.2s steps(3, end) infinite alternate;
+	transition: transform 0.3s;
+}
+
+@keyframes birdFlap {
+  0% {background-position: 0 84px;}
+  100% {background-position: 0 0;}
+}
