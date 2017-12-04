@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Bird from './components/Bird';
-import TopColumn from './components/TopColumn';
+import Column from './components/Column';
 import './App.css';
 
 
@@ -23,10 +23,10 @@ class App extends Component {
 		return (
 			<div className='app-container'>
 				<Bird gameOver={this.state.gameOver} />
-				<TopColumn gameOver={this.gameOver} start={25}/>
-				<TopColumn gameOver={this.gameOver} start={50}/>
-				<TopColumn gameOver={this.gameOver} start={75}/>
-				<TopColumn gameOver={this.gameOver} start={99}/>
+				<Column gameOver={this.gameOver} start={25}/>
+				<Column gameOver={this.gameOver} start={50}/>
+				<Column gameOver={this.gameOver} start={75}/>
+				<Column gameOver={this.gameOver} start={99}/>
 			</div>
 		);
 	}

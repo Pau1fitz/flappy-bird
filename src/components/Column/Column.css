@@ -1,0 +1,13 @@
+.top-column {
+	background: url('https://s21.postimg.org/kyr2rnpzr/pipe.png') bottom;
+	width: 60px;
+	position: absolute;
+	top: 0;
+}
+
+.bottom-column {
+	background: url('https://s21.postimg.org/kyr2rnpzr/pipe.png') top;
+	width: 60px;
+	position: absolute;
+	bottom: 0;
+}

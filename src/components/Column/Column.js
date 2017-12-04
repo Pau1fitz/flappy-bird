@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './TopColumn.css';
+import './Column.css';
 
-class TopColumn extends Component {
+class Column extends Component {
 
 	constructor(props) {
 		super(props);
@@ -38,14 +38,11 @@ class TopColumn extends Component {
 
 		let bird = document.querySelectorAll('.bird')[0];
 
-		console.log('BIRD: ',bird.style.top)
-		console.log('HEIGHT: ',height)
-
 		if( parseInt(bird.style.top) <= height && Math.round(left) === 10 ) {
 				this.props.gameOver();
 		}
 
-		if(left <= -3) {
+		if(left <= -7) {
 			this.setState({
 				left: 100,
 				height: Math.floor(Math.random() * 120) + 50,
@@ -58,16 +55,17 @@ class TopColumn extends Component {
 		const { height, left } = this.state;
 
 		return(
-			<div style={{ height, left: left + '%' }} className='column'>
-				<div className='column-bottom' />
+			<div>
+				<div style={{ height, left: left + '%' }} className='top-column' />
+				<div style={{ height, left: left + '%' }} className='bottom-column' />
 			</div>
 		);
 	}
 
 }
 
-TopColumn.propTypes = {
+Column.propTypes = {
 	start: PropTypes.number
 };
 
-export default TopColumn;
+export default Column;
