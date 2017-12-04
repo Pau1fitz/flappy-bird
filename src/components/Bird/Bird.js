@@ -10,7 +10,7 @@ class Bird extends Component {
 	}
 
 	componentDidMount(){
-		document.body.addEventListener('mousedown', this.moveBird);
+		// document.body.addEventListener('mousedown', this.moveBird);
 		document.body.addEventListener('mouseup', this.setFalling);
 
 		setInterval(() => {
