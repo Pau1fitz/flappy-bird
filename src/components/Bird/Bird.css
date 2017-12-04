@@ -1,7 +1,7 @@
 .bird {
 	height: 28px;
 	width: 40px;
-	right: 90%;
+	left: 10%;
 	background: url('https://s28.postimg.org/k90gybbtl/bird_Sprite.png');
 	position: absolute;
 	z-index: 3;

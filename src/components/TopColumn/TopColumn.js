@@ -38,7 +38,10 @@ class TopColumn extends Component {
 
 		let bird = document.querySelectorAll('.bird')[0];
 
-		if( parseInt(bird.style.top) <= height && Math.round(left) === 85 ) {
+		console.log('BIRD: ',bird.style.top)
+		console.log('HEIGHT: ',height)
+
+		if( parseInt(bird.style.top) <= height && Math.round(left) === 10 ) {
 				this.props.gameOver();
 		}
 
