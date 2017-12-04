@@ -10,7 +10,7 @@ class Bird extends Component {
 	}
 
 	componentDidMount(){
-		// document.body.addEventListener('mousedown', this.moveBird);
+		document.body.addEventListener('mousedown', this.moveBird);
 		document.body.addEventListener('mouseup', this.setFalling);
 
 		setInterval(() => {
@@ -19,16 +19,16 @@ class Bird extends Component {
 					return {
 						top: prevState.top + 5,
 						transform: 'rotate(20deg)'
-					}
-				})
+					};
+				});
 			}
-		}, 500)
+		}, 500);
 	}
 
 	setFalling = () => {
 		this.setState({
 			falling: true
-		})
+		});
 	}
 
 	moveBird = () => {
@@ -37,7 +37,7 @@ class Bird extends Component {
 				falling: false,
 				top: prevState.top - 25,
 				transform: 'rotate(-20deg)'
-			}
+			};
 		});
 	}
 

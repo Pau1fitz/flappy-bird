@@ -8,6 +8,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className='app-container'>
+				<Bird />
 				<TopColumn start={25}/>
 				<TopColumn start={50}/>
 				<TopColumn start={75}/>

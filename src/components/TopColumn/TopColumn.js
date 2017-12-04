@@ -29,7 +29,15 @@ class TopColumn extends Component {
 
 	checkPosition() {
 
-		const { left } = this.state;
+
+		const { left, height } = this.state;
+
+		let bird = document.querySelectorAll('.bird')[0];
+
+		if( parseInt(bird.style.top) <= height && Math.round(left) === 90 ) {
+				console.log('GAME OVER');
+		}
+		
 		if(left <= -3) {
 			this.setState({
 				left: 100,
