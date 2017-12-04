@@ -18,12 +18,12 @@ class App extends Component {
 		this.setState({
 			gameOver: true
 		});
-		
+
 	}
 	render() {
 		return (
 			<div className='app-container'>
-				<Bird gameOver={this.state.gameOver} />
+				<Bird gameOver={this.gameOver} />
 				<Column gameOver={this.gameOver} start={25}/>
 				<Column gameOver={this.gameOver} start={50}/>
 				<Column gameOver={this.gameOver} start={75}/>
