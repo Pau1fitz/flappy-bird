@@ -35,7 +35,7 @@ class Bird extends Component {
 		this.setState(prevState => {
 			return {
 				falling: false,
-				top: prevState.top - 15,
+				top: prevState.top - 25,
 				transform: 'rotate(-20deg)'
 			}
 		});
