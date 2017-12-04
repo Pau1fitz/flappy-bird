@@ -17,7 +17,8 @@ class App extends Component {
 
 		this.setState({
 			gameOver: true
-		})
+		});
+		
 	}
 	render() {
 		return (

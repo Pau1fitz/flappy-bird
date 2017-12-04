@@ -12,17 +12,34 @@ class Bird extends Component {
 	componentDidMount(){
 		document.body.addEventListener('mousedown', this.moveBird);
 		document.body.addEventListener('mouseup', this.setFalling);
+		let gameHeight = document.getElementById('root').offsetHeight;
 
-		setInterval(() => {
+		let intervalId = setInterval(() => {
+
 			if(this.state.falling) {
-				this.setState(prevState => {
-					return {
-						top: prevState.top + 5,
-						transform: 'rotate(20deg)'
-					};
-				});
+				if(this.state.top > gameHeight - 30) {
+						this.setState(prevState => {
+							return {
+								top: gameHeight - 30,
+							};
+						});
+					this.props.gameOver();
+					this.clearInterval();
+
+				} else {
+					this.setState(prevState => {
+						return {
+							top: prevState.top + 5,
+							transform: 'rotate(20deg)'
+						};
+					});
+				}
 			}
 		}, 50);
+
+		this.setState({
+			intervalId
+		});
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -37,6 +54,7 @@ class Bird extends Component {
 							top: gameHeight - 30,
 						};
 					});
+
 					this.clearInterval();
 
 					document.body.removeEventListener('mousedown', this.moveBird);
@@ -73,7 +91,7 @@ class Bird extends Component {
 			return {
 				falling: false,
 				top: prevState.top - 25,
-				transform: 'rotate(-90deg)'
+				transform: 'rotate(-20deg)'
 			};
 		});
 	}
