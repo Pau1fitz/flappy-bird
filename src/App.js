@@ -8,9 +8,10 @@ class App extends Component {
 	render() {
 		return (
 			<div className='app-container'>
-				<TopColumn start={-2}/>
+				<TopColumn start={25}/>
 				<TopColumn start={50}/>
 				<TopColumn start={75}/>
+				<TopColumn start={99}/>
 			</div>
 		);
 	}
