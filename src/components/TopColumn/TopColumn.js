@@ -30,7 +30,7 @@ class TopColumn extends Component {
 	checkPosition() {
 
 		const { left } = this.state;
-		if(left <= 0) {
+		if(left <= -3) {
 			this.setState({
 				left: 100,
 				height: Math.floor(Math.random() * 120) + 50,

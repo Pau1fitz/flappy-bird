@@ -7,8 +7,8 @@ import './App.css';
 class App extends Component {
 	render() {
 		return (
-			<div>
-				<TopColumn start={25}/>
+			<div className='app-container'>
+				<TopColumn start={-2}/>
 				<TopColumn start={50}/>
 				<TopColumn start={75}/>
 			</div>
