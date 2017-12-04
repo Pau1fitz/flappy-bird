@@ -4,7 +4,7 @@ import './Bird.css';
 class Bird extends Component {
 
 	state = {
-		top: 0,
+		top: 125,
 		falling: true,
 		transform: 0
 	}
@@ -22,7 +22,44 @@ class Bird extends Component {
 					};
 				});
 			}
-		}, 500);
+		}, 50);
+	}
+
+	componentWillReceiveProps(nextProps) {
+
+		if(nextProps.gameOver) {
+
+			let gameHeight = document.getElementById('root').offsetHeight;
+			let intervalId = setInterval(() => {
+				if(this.state.top > gameHeight - 30) {
+					this.setState(prevState => {
+						return {
+							top: gameHeight - 30,
+						};
+					});
+					this.clearInterval();
+
+					document.body.removeEventListener('mousedown', this.moveBird);
+					document.body.removeEventListener('mouseup', this.setFalling);
+
+				} else {
+					this.setState(prevState => {
+						return {
+							top: prevState.top + 10,
+							transform: 'rotate(20deg)'
+						};
+					});
+				}
+			}, 25);
+
+			this.setState({
+				intervalId
+			});
+		}
+	}
+
+	clearInterval = () => {
+		clearInterval(this.state.intervalId)
 	}
 
 	setFalling = () => {
@@ -36,7 +73,7 @@ class Bird extends Component {
 			return {
 				falling: false,
 				top: prevState.top - 25,
-				transform: 'rotate(-20deg)'
+				transform: 'rotate(-90deg)'
 			};
 		});
 	}

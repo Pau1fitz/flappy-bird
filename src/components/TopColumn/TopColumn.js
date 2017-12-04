@@ -17,7 +17,8 @@ class TopColumn extends Component {
 	}
 
 	moveColumn = () => {
-		setInterval(() => {
+
+		let intervalId = setInterval(() => {
 			this.setState(prevState => {
 				return {
 					left: prevState.left - 1
@@ -25,19 +26,22 @@ class TopColumn extends Component {
 			}, this.checkPosition);
 
 		}, 50);
+
+    this.setState({
+			intervalId
+		});
 	}
 
 	checkPosition() {
-
 
 		const { left, height } = this.state;
 
 		let bird = document.querySelectorAll('.bird')[0];
 
-		if( parseInt(bird.style.top) <= height && Math.round(left) === 90 ) {
-				console.log('GAME OVER');
+		if( parseInt(bird.style.top) <= height && Math.round(left) === 85 ) {
+				this.props.gameOver();
 		}
-		
+
 		if(left <= -3) {
 			this.setState({
 				left: 100,
@@ -51,7 +55,9 @@ class TopColumn extends Component {
 		const { height, left } = this.state;
 
 		return(
-			<div style={{ height, left: left + '%' }} className='column' />
+			<div style={{ height, left: left + '%' }} className='column'>
+				<div className='column-bottom' />
+			</div>
 		);
 	}
 

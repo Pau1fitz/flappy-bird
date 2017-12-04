@@ -5,14 +5,28 @@ import './App.css';
 
 
 class App extends Component {
+
+	state = {
+		gameOver: false
+	}
+
+	gameOver = () => {
+		for(let i = 0; i < 100; i++) {
+			window.clearInterval(i);
+		}
+
+		this.setState({
+			gameOver: true
+		})
+	}
 	render() {
 		return (
 			<div className='app-container'>
-				<Bird />
-				<TopColumn start={25}/>
-				<TopColumn start={50}/>
-				<TopColumn start={75}/>
-				<TopColumn start={99}/>
+				<Bird gameOver={this.state.gameOver} />
+				<TopColumn gameOver={this.gameOver} start={25}/>
+				<TopColumn gameOver={this.gameOver} start={50}/>
+				<TopColumn gameOver={this.gameOver} start={75}/>
+				<TopColumn gameOver={this.gameOver} start={99}/>
 			</div>
 		);
 	}
