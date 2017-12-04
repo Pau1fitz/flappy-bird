@@ -2,9 +2,22 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+
+}
+
+html{
+	width: 100%;
+	height: 100%;
+	background: #000;
+}
+
+body {
 	background: url(https://raw.githubusercontent.com/bhauman/flappy-bird-demo/master/resources/public/imgs/background.png);
 	background-repeat-x: repeat;
-	height: 100%;
-	width: 100%;
+	height: 420px;
+	max-width: 800px;
+	margin: 0 auto;
+	top: 20%;
 	background-size: contain;
+	position: relative;
 }

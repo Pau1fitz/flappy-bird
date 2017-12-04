@@ -17,6 +17,7 @@ class Column extends Component {
 		const { height, right } = this.state;
 		let bird = document.querySelectorAll('.bird')[0];
 
+
 		if( parseInt(bird.style.top) <= height && Math.round(right) === 90 ) {
 			console.log('GAME OVER')
 		}
@@ -24,13 +25,25 @@ class Column extends Component {
 
 	moveColumn = () => {
 		setInterval(() => {
+
+			const { right } = this.state;
+
+			console.log(right)
+
 			this.getColumnPosition();
-			this.setState(prevState => {
-				return {
-					right: prevState.right + 0.1
-				}
-			})
-		}, 10)
+
+			if(right > 95) {
+				this.setState({
+					right: 0
+				})
+			} else {
+				this.setState(prevState => {
+					return {
+						right: prevState.right + 0.1
+					}
+				})
+			}
+		}, 5)
 	}
 
 	render(){
