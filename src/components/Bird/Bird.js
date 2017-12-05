@@ -18,11 +18,12 @@ class Bird extends Component {
 
 			if(this.state.falling) {
 				if(this.state.top > gameHeight - 30) {
-						this.setState(prevState => {
-							return {
-								top: gameHeight - 30,
-							};
-						});
+					this.setState(prevState => {
+						return {
+							top: gameHeight - 30,
+						};
+					});
+
 					this.props.gameOver();
 					this.clearInterval();
 
@@ -45,8 +46,9 @@ class Bird extends Component {
 	componentWillReceiveProps(nextProps) {
 
 		if(nextProps.gameOver) {
-
 			let gameHeight = document.getElementById('root').offsetHeight;
+			document.body.removeEventListener('mousedown', this.moveBird);
+			document.body.removeEventListener('mouseup', this.setFalling);
 			let intervalId = setInterval(() => {
 				if(this.state.top > gameHeight - 30) {
 					this.setState(prevState => {
@@ -56,9 +58,6 @@ class Bird extends Component {
 					});
 
 					this.clearInterval();
-
-					document.body.removeEventListener('mousedown', this.moveBird);
-					document.body.removeEventListener('mouseup', this.setFalling);
 
 				} else {
 					this.setState(prevState => {
@@ -77,7 +76,7 @@ class Bird extends Component {
 	}
 
 	clearInterval = () => {
-		clearInterval(this.state.intervalId)
+		clearInterval(this.state.intervalId);
 	}
 
 	setFalling = () => {
