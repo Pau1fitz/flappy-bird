@@ -7,7 +7,8 @@ class Column extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			height: Math.floor(Math.random() * 120) + 50,
+
+			height: Math.floor(Math.random() * 61) + 70,
 			left: props.start
 		};
 	}
@@ -17,7 +18,6 @@ class Column extends Component {
 	}
 
 	moveColumn = () => {
-
 		let intervalId = setInterval(() => {
 			this.setState(prevState => {
 				return {
@@ -27,7 +27,7 @@ class Column extends Component {
 
 		}, 50);
 
-    this.setState({
+		this.setState({
 			intervalId
 		});
 	}
@@ -38,10 +38,15 @@ class Column extends Component {
 
 		let bird = document.querySelectorAll('.bird')[0];
 
-		if( parseInt(bird.style.top) <= height && Math.round(left) === 10 ) {
-				this.props.gameOver();
+		let gameHeight = document.getElementById('root').offsetHeight;
+
+		if( parseInt(bird.style.top) <= height && Math.round(left) === 10 ||
+				parseInt(bird.style.top) >= (gameHeight - height - 30) && Math.round(left) === 10
+		) {
+			this.props.gameOver();
 		}
 
+		// create new random size column when column has moved off screen
 		if(left <= -7) {
 			this.setState({
 				left: 100,
@@ -65,7 +70,8 @@ class Column extends Component {
 }
 
 Column.propTypes = {
-	start: PropTypes.number
+	start: PropTypes.number,
+	gameOver: PropTypes.bool
 };
 
 export default Column;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Bird.css';
 
 class Bird extends Component {
@@ -12,16 +13,53 @@ class Bird extends Component {
 	componentDidMount(){
 		document.body.addEventListener('mousedown', this.moveBird);
 		document.body.addEventListener('mouseup', this.setFalling);
-		let gameHeight = document.getElementById('root').offsetHeight;
 
+		this.handleDeadBird();
+
+	}
+
+	componentWillReceiveProps(nextProps) {
+
+		if(nextProps.gameOver) {
+
+			let gameHeight = document.getElementById('root').offsetHeight;
+
+			document.body.removeEventListener('mousedown', this.moveBird);
+			document.body.removeEventListener('mouseup', this.setFalling);
+
+			let intervalId = setInterval(() => {
+				if(this.state.top > gameHeight - 30) {
+					this.setState({
+						top: gameHeight - 30,
+					});
+
+					this.clearInterval();
+
+				} else {
+					this.setState(prevState => {
+						return {
+							top: prevState.top + 15,
+							transform: 'rotate(20deg)'
+						};
+					});
+				}
+			}, 40);
+
+			this.setState({
+				intervalId
+			});
+
+		}
+	}
+
+	handleDeadBird = () => {
+		let gameHeight = document.getElementById('root').offsetHeight;
 		let intervalId = setInterval(() => {
 
 			if(this.state.falling) {
 				if(this.state.top > gameHeight - 30) {
-					this.setState(prevState => {
-						return {
-							top: gameHeight - 30,
-						};
+					this.setState({
+						top: gameHeight - 30,
 					});
 
 					this.props.gameOver();
@@ -30,7 +68,7 @@ class Bird extends Component {
 				} else {
 					this.setState(prevState => {
 						return {
-							top: prevState.top + 5,
+							top: prevState.top * 1.05,
 							transform: 'rotate(20deg)'
 						};
 					});
@@ -41,38 +79,6 @@ class Bird extends Component {
 		this.setState({
 			intervalId
 		});
-	}
-
-	componentWillReceiveProps(nextProps) {
-
-		if(nextProps.gameOver) {
-			let gameHeight = document.getElementById('root').offsetHeight;
-			document.body.removeEventListener('mousedown', this.moveBird);
-			document.body.removeEventListener('mouseup', this.setFalling);
-			let intervalId = setInterval(() => {
-				if(this.state.top > gameHeight - 30) {
-					this.setState(prevState => {
-						return {
-							top: gameHeight - 30,
-						};
-					});
-
-					this.clearInterval();
-
-				} else {
-					this.setState(prevState => {
-						return {
-							top: prevState.top + 10,
-							transform: 'rotate(20deg)'
-						};
-					});
-				}
-			}, 25);
-
-			this.setState({
-				intervalId
-			});
-		}
 	}
 
 	clearInterval = () => {
@@ -105,5 +111,9 @@ class Bird extends Component {
 	}
 
 }
+
+Bird.propTypes = {
+	gameOver: PropTypes.func
+};
 
 export default Bird;
